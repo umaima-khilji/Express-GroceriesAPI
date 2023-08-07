@@ -1,4 +1,4 @@
-const Products = require('./schema')
+const Products = require('./model')
 const mongoose = require('mongoose')
 require('dotenv').config()
 
@@ -176,9 +176,6 @@ const updatePro = async (req, res) => {
       })
   }
 }
-
-
-
 
 
 module.exports = { getProducts, postProducts,getProductbyID,DelPro,getProductbyCategory,getProductbyBrand,updatePro};

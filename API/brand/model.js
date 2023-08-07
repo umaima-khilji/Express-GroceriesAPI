@@ -9,10 +9,7 @@ const BrandSchema = new Schema({
   description: {
     type: String,
   },
-  logo: {
-    type: String,
-    default: "https://example.com/default-logo.png",
-  },
+  
   image: {
     type: String,
     required: true,}

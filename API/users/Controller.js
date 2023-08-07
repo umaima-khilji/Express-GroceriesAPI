@@ -93,10 +93,6 @@ const Login = async (req, res) => {
                 })
             }
 
-
-
-
-
         }
 
     }
@@ -236,11 +232,4 @@ const  DelUser = async (req, res) => {
   }
   
   
-  
-  
-  
-  
-
-
-
 module.exports = { Dummy, SignUp, Login, allUsers, getUserbyEmail, userbyEmail , DelUser,updateUser }
