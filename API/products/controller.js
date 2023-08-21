@@ -4,7 +4,7 @@ require('dotenv').config()
 
 const getProducts =async (req, res) => {
   try {
-      await mongoose.connect(process.env.MONGO_URL)
+      await mongoose.connect(process.env.MONGO_URI)
       const products = await Products.find()
       res.json(
           {
@@ -28,7 +28,7 @@ const postProducts = async (req, res) => {
   const { name, price, category, brand, image, description } = req.body;
   try {
     if (name && price && category && brand && image && description) {
-      await mongoose.connect(process.env.MONGO_URL)
+      await mongoose.connect(process.env.MONGO_URI)
       await Products.create({ name, price, category, brand, image, description })
       res.status(201).json({
         message: "Product Add Successfully"
@@ -55,7 +55,7 @@ const getProductbyID = async (req, res) => {
 
 
   try {
-      await mongoose.connect(process.env.MONGO_URL)
+      await mongoose.connect(process.env.MONGO_URI)
       const products = await Products.findOne({ _id})
       res.json(
           {
@@ -81,7 +81,7 @@ const getProductbyCategory = async (req, res) => {
 
 
   try {
-      await mongoose.connect(process.env.MONGO_URL)
+      await mongoose.connect(process.env.MONGO_URI)
       const products = await Products.find({ category})
       res.json(
           {
@@ -106,7 +106,7 @@ const getProductbyBrand = async (req, res) => {
 
 
   try {
-      await mongoose.connect(process.env.MONGO_URL)
+      await mongoose.connect(process.env.MONGO_URI)
       const products = await Products.find({ brand})
       res.json(
           {
@@ -128,7 +128,7 @@ const getProductbyBrand = async (req, res) => {
 const  DelPro = async (req, res) => {
   const { name, _id } = req.body
   try {
-    await mongoose.connect(process.env.MONGO_URL)
+    await mongoose.connect(process.env.MONGO_URI)
    await Products.deleteOne({name,_id})
    const products = await Products.find()
     res.json(
@@ -156,7 +156,7 @@ const updatePro = async (req, res) => {
   const update = { name,price, category, brand, image, description };
 
   try {
-      await connect(process.env.MONGO_URL)
+      await connect(process.env.MONGO_URI)
       await Products.findOneAndUpdate(filter, update, {
           new: true
       })
