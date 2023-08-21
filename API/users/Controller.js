@@ -26,7 +26,7 @@ const SignUp = async (req, res) => {
 
 
         else {
-            await mongoose.connect(process.env.MONGO_URL)
+            await mongoose.connect(process.env.MONGO_URI)
             console.log("DB Connected")
             const existingUser = await User.exists({ email: email })
             if (existingUser) {
@@ -58,7 +58,7 @@ const Login = async (req, res) => {
     const { password, email } = req.body;
 
     try {
-        await mongoose.connect(process.env.MONGO_URL)
+        await mongoose.connect(process.env.MONGO_URI)
         const existingUser = await User.findOne({ email: email })
 
         if (!existingUser) {
@@ -106,7 +106,7 @@ const Login = async (req, res) => {
 
 const allUsers = async (req, res) => {
     try {
-        await mongoose.connect(process.env.MONGO_URL)
+        await mongoose.connect(process.env.MONGO_URI)
         const Users = await User.find()
         res.json(
             {
@@ -133,7 +133,7 @@ const getUserbyEmail = async (req, res) => {
 
 
     try {
-        await mongoose.connect(process.env.MONGO_URL)
+        await mongoose.connect(process.env.MONGO_URI)
         const Users = await User.findOne({ email: email })
         res.json(
             {
@@ -160,7 +160,7 @@ const userbyEmail = async (req, res) => {
 
 
     try {
-        await mongoose.connect(process.env.MONGO_URL)
+        await mongoose.connect(process.env.MONGO_URI)
         const Users = await User.findOne({ email: email })
         res.json(
             {
@@ -182,7 +182,7 @@ const userbyEmail = async (req, res) => {
 const  DelUser = async (req, res) => {
     const { name, _id } = req.body
     try {
-      await mongoose.connect(process.env.MONGO_URL)
+      await mongoose.connect(process.env.MONGO_URI)
      await User.deleteOne({name,_id})
      const user = await User.find()
       res.json(
@@ -210,7 +210,7 @@ const  DelUser = async (req, res) => {
     const update = { username, password, email };
   
     try {
-        await connect(process.env.MONGO_URL)
+        await connect(process.env.MONGO_URI)
         await User.findOneAndUpdate(filter, update, {
             new: true
         })
