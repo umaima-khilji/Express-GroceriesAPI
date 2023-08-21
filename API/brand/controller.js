@@ -4,7 +4,7 @@ require('dotenv').config()
 
 const getBrands = async (req, res) => {
   try {
-    await mongoose.connect(process.env.MONGO_URL)
+    await mongoose.connect(process.env.MONGO_URI)
     const brand = await Brand.find()
     res.json(
       {
@@ -26,7 +26,7 @@ const postBrand = async (req, res) => {
   const { name, description,image } = req.body;
   try {
     if (name && description && image) {
-      await mongoose.connect(process.env.MONGO_URL)
+      await mongoose.connect(process.env.MONGO_URI)
       await Brand.create({ name, description , image })
       res.status(201).json({
         message: "brand Add Successfully"
@@ -53,7 +53,7 @@ const getBrandbyID = async (req, res) => {
 
 
   try {
-    await mongoose.connect(process.env.MONGO_URL)
+    await mongoose.connect(process.env.MONGO_URI)
     const brand = await Brand.findOne({ _id })
     res.json(
       {
@@ -77,7 +77,7 @@ const getBrandbyID = async (req, res) => {
 const DelBrands = async (req, res) => {
   const { _id } = req.body
   try {
-    await mongoose.connect(process.env.MONGO_URL)
+    await mongoose.connect(process.env.MONGO_URI)
    await Brand.deleteOne({_id})
    const brand = await Brand.find()
     res.json(
@@ -105,7 +105,7 @@ const updateBrand = async (req, res) => {
   const update = { name, image };
 
   try {
-      await connect(process.env.MONGO_URL)
+      await connect(process.env.MONGO_URI)
       await Brand.findOneAndUpdate(filter, update, {
           new: true
       })
