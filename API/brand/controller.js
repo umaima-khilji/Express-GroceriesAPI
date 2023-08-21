@@ -105,7 +105,7 @@ const updateBrand = async (req, res) => {
   const update = { name, image };
 
   try {
-      await connect(process.env.MONGO_URI)
+      await connect(process.env.MONGO_URL)
       await Brand.findOneAndUpdate(filter, update, {
           new: true
       })
