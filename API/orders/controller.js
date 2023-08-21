@@ -27,7 +27,7 @@ const placeOrder = async (req, res) => {
 
 
     try {
-        await connect(process.env.MONGO_URL)
+        await connect(process.env.MONGO_URI)
         const orders = await Orders.create({ customerName, customerEmail, customerId, customerContact, customerAddress, order })
 
         await transporter.sendMail({
@@ -73,7 +73,7 @@ const placeOrder = async (req, res) => {
 
 const allOrders = async (req, res) => {
     try {
-        await connect(process.env.MONGO_URL)
+        await connect(process.env.MONGO_URI)
         const orders = await Orders.find()
         res.json({ orders })
 
